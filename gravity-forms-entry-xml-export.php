@@ -7,32 +7,36 @@
  * Author: Irfan Saleem
  * Author URI: https://github.com/edirfansaleem/
  * License: GPLv2 or later
+ * Text Domain: gravity-forms-xml-export
+ * Domain Path: /languages/
  */
+
+// Prevent direct access to the plugin file
+defined( 'ABSPATH' ) || exit;
 
 add_filter( 'gform_notification_settings_fields', 'add_xml_export_setting', 1, 3 );
 
 function add_xml_export_setting( $fields, $notification, $form ) {
-        // Add the RA-Micro Excel Export checkbox setting
-        $value = ! empty( $notification['xml_file_export'] );
-        $fields[] = array(
-            'title'  => esc_html__( 'XML Export', 'your-text-domain' ),
-            'fields' => array(
-                array(
-                    'label'   => esc_html__( 'Enable XML Support', 'your-text-domain' ),
-                    'type'    => 'checkbox',
-                    'name'    => 'xml_file_excel_export',
-                    'tooltip' => esc_html__( 'Check this box to enable XML File export for this notification.', 'your-text-domain' ),
-                    'choices' => array(
-                        array(
-                            'label' => esc_html__( 'Enable XML File Export', 'your-text-domain' ),
-                            'name'  => 'xml_file_excel_export',
-                            'value' => $value,
-                        ),
+    // Add the XML export checkbox setting
+    $value = ! empty( $notification['xml_file_export'] );
+    $fields[] = array(
+        'title'  => esc_html__( 'XML Export', 'gravity-forms-xml-export' ),
+        'fields' => array(
+            array(
+                'label'   => esc_html__( 'Enable XML Support', 'gravity-forms-xml-export' ),
+                'type'    => 'checkbox',
+                'name'    => 'xml_file_excel_export',
+                'tooltip' => esc_html__( 'Check this box to enable XML File export for this notification.', 'gravity-forms-xml-export' ),
+                'choices' => array(
+                    array(
+                        'label' => esc_html__( 'Enable XML File Export', 'gravity-forms-xml-export' ),
+                        'name'  => 'xml_file_excel_export',
+                        'value' => $value,
                     ),
                 ),
             ),
-        );
-    
+        ),
+    );
 
     return $fields;
 }
